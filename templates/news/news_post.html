@@ -1,0 +1,21 @@
+{% extends 'news/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+News post
+{% endblock title %}
+
+{% block content %}
+{#    {% load i18n %}#}
+{#    {% language 'ru' %}#}
+{#        {{ news_post.created|date:'d E Y' }},#}
+{#        автор {{ news_post.author.user.username }}#}
+{#    {% endlanguage  %}#}
+    {{ news_post.created|date:'d-m-Y G:i' }},
+    автор {{ news_post.author.user.username }}
+    </br>
+    <b>{{ news_post.title|censor }}</b> (<i>рейтинг: {{ news_post.rating }}</i>)
+    </br>
+    {{ news_post.text|censor }}
+    </br>
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends 'news/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+    News
+{% endblock title %}
+
+{% block content %}
+    <h1>Всего новостей: {{ news|length }}</h1>
+    {% if news %}
+        <table>
+            <tr>
+                <td>Заголовок</td>
+                <td>Дата публикации</td>
+                <td>Описание</td>
+                <td>Подробнее</td>
+            </tr>
+            {% for n in news %}
+                <tr>
+                    <td>{{ n.title|censor }}</td>
+                    <td>{{ n.created|date:'d.m.Y'}}</td>
+                    <td>{{ n.text|truncatechars:50|censor }}</td>
+                    <td> <a class="nav-link" href="/news/{{ n.id }}">Перейти</a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>Нет новостей(</h2>
+    {% endif %}
+{% endblock content %}
