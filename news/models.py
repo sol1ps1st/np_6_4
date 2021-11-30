@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 from news.dicts import POST_TYPES
 
@@ -36,6 +37,9 @@ class Post(models.Model):
             return self.text
         else:
             return self.text[:POST_PREVIEW_LEN] + "..."
+
+    def get_absolute_url(self):
+        return reverse('news_detail', kwargs={'pk': self.pk})
 
 
 class PostCategory(models.Model):

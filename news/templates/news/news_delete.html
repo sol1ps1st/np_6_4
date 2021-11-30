@@ -1,0 +1,21 @@
+{% extends 'news/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+    News delete
+{% endblock title %}
+
+{% block content %}
+    <h2>Вы действительно хотите удалить данную новость?</h2>
+    {{ news_post.created|date:'d-m-Y G:i' }},
+    автор {{ news_post.author.user.username }}
+    </br>
+    <b>{{ news_post.title|censor }}</b> (<i>рейтинг: {{ news_post.rating }}</i>)
+    </br>
+    {{ news_post.text|censor }}
+    </br>
+
+    <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Удалить"></form>
+{% endblock content %}
