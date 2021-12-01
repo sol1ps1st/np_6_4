@@ -16,8 +16,8 @@
                 <td>Заголовок</td>
                 <td>Дата публикации</td>
                 <td>Описание</td>
-                <td>Редактировать</td>
-                <td>Удалить</td>
+                <td></td> <!--Редактировать-->
+                <td></td> <!--Удалить-->
             </tr>
             {% for n in news %}
                 <tr>
@@ -37,21 +37,21 @@
 
     {% if is_paginated %}
         {% if page_obj.has_previous %}
-            <a href={{ get_dict|paginate_link:1 }}>first</a>
-            <a href={{ get_dict|paginate_link:page_obj.previous_page_number }}><<<</a>
+            <a href="?page=1{{ filter_params }}">first</a>
+            <a href="?page={{ page_obj.previous_page_number }}{{ filter_params }}"><<<</a>
         {% endif %}
 
         {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
                 {{ num }}
             {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                <a href={{ get_dict|paginate_link:num }}>{{ num }}</a>
+                <a href="?page={{ num }}{{ filter_params }}">{{ num }}</a>
             {% endif %}
         {% endfor %}
 
         {% if page_obj.has_next %}
-            <a href={{ get_dict|paginate_link:page_obj.next_page_number }}>>>></a>
-            <a href={{ get_dict|paginate_link:page_obj.paginator.num_pages }}>last</a>
+            <a href="?page={{ page_obj.next_page_number }}{{ filter_params }}">>>></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{{ filter_params }}">last</a>
         {% endif %}
     {% endif %}
 

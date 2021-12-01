@@ -28,10 +28,18 @@ class NewsList(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['filter'] = self.get_filter()
-        context['get_dict'] = {
-            k: value[0] for k, value in dict(self.request.GET.copy()).items() if k != 'page'
-        }  # Нужно для пагинации по отфильтрованным результатам: фильтры передаются в GET словарике
+        filter = self.get_filter()
+        context['filter'] = filter
+
+        filter_params = ""
+        for f_name in [str(k) for k in filter.filters]:
+            if f_name in filter.data:
+                filter_params += f"&{f_name}={filter.data[f_name]}"
+        context['filter_params'] = filter_params
+
+        # context['get_dict'] = {
+        #     k: value[0] for k, value in dict(self.request.GET.copy()).items() if k != 'page'
+        # }  # Нужно для пагинации по отфильтрованным результатам: фильтры передаются в GET словарике
         return context
 
 

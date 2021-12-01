@@ -17,11 +17,11 @@ def censor(value: str):
     return " ".join(words)
 
 
-@register.filter(name='paginate_link')
-def paginate_link(get_dict, page_numer: int):
-    # if type(get_params) != dict:
-    #     raise ValueError("Неверные параметры")
-    href = f"?page={page_numer}"
-    for key, value in get_dict.items():
-        href += f"&{key}={value}"
-    return href
+# @register.filter(name='paginate_link')
+# def paginate_link(get_dict, page_numer: int):
+#     # if type(get_params) != dict:
+#     #     raise ValueError("Неверные параметры")
+#     href = f"?page={page_numer}"
+#     for key, value in get_dict.items():
+#         href += f"&{key}={value}"
+#     return href

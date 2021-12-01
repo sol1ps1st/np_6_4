@@ -11,14 +11,16 @@ POST_PREVIEW_LEN = 124
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return self.name
 
 class Post(models.Model):
-    title = models.CharField(max_length=255)
-    text = models.TextField()
+    title = models.CharField(max_length=255, verbose_name='Заголовок')
+    text = models.TextField(verbose_name='Текст')
     rating = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey("Author", on_delete=models.CASCADE)
-    categories = models.ManyToManyField(Category, through="PostCategory")
+    author = models.ForeignKey("Author", verbose_name='Автор', on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Category, verbose_name='Категории', through="PostCategory")
 
     article = "a"
     news = "n"
@@ -83,3 +85,6 @@ class Author(models.Model):
 
         self.rating = a_rating + c_rating + ca_rating
         self.save()
+
+    def __str__(self):
+        return self.user.username

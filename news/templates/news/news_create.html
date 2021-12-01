@@ -5,10 +5,10 @@
 {% endblock title %}
 
 {% block content %}
-    <h3>Описание новости</h3>
+    <h3>Создание/изменение новости</h3>
     <form method="POST">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="Добавить">
     </form>
 {% endblock content %}

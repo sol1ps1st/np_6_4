@@ -12,7 +12,8 @@ class NewsFilter(FilterSet):
     author = django_filters.AllValuesFilter(
         field_name='author__user__username',
         lookup_expr='exact',
-        label='Автор'
+        label='Автор',
+        empty_label='Не выбран'
     )
     created = django_filters.DateFilter(
         field_name='created',
