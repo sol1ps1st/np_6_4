@@ -6,53 +6,59 @@
 {% endblock title %}
 
 {% block content %}
-    <form method="GET">
-        {{ filter.form }}
-        <input type="submit" value="Найти">
-    </form>
-    {% if news %}
-        <table>
-            <tr>
-                <td>Заголовок</td>
-                <td>Дата публикации</td>
-                <td>Описание</td>
-                <td></td> <!--Редактировать-->
-                <td></td> <!--Удалить-->
-            </tr>
-            {% for n in news %}
+    <div class="text-center">
+        <form method="GET">
+            {{ filter.form }}
+            <input type="submit" value="Найти">
+        </form>
+    </div>
+    <p>
+        {% if news %}
+            <table>
                 <tr>
-                    <td><a class="nav-link" href={{ n.get_absolute_url }}>{{ n.title }}</a></td>
-                    <td>{{ n.created|date:'d.m.Y' }}</td>
-                    <td>{{ n.text|truncatechars:50 }}</td>
-                    <td><a class="nav-link" href={% url 'news_update' n.pk %}>Редактировать</a></td>
-                    <td><a class="nav-link" href={% url 'news_delete' n.pk %}>Удалить</a></td>
+                    <td>Заголовок</td>
+                    <td>Дата публикации</td>
+                    <td>Описание</td>
+                    <td></td> <!--Редактировать-->
+                    <td></td> <!--Удалить-->
                 </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <h2>Нет новостей(</h2>
-    {% endif %}
-
-    <a class="nav-link" href={% url 'news_create' %}>Добавить новость</a> <br>
-
-    {% if is_paginated %}
-        {% if page_obj.has_previous %}
-            <a href="?page=1{{ filter_params }}">first</a>
-            <a href="?page={{ page_obj.previous_page_number }}{{ filter_params }}"><<<</a>
+                {% for n in news %}
+                    <tr>
+                        <td><a class="nav-link" href={{ n.get_absolute_url }}>{{ n.title }}</a></td>
+                        <td>{{ n.created|date:'d.m.Y' }}</td>
+                        <td>{{ n.text|truncatechars:50 }}</td>
+                        <td><a class="nav-link" href={% url 'news_update' n.pk %}>Редактировать</a></td>
+                        <td><a class="nav-link" href={% url 'news_delete' n.pk %}>Удалить</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h2>Нет новостей(</h2>
         {% endif %}
 
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-                {{ num }}
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                <a href="?page={{ num }}{{ filter_params }}">{{ num }}</a>
+    <a class="nav-link" href={% url 'news_create' %}>
+        <button type="button">Добавить новость</button>
+    </a>
+
+    <div class="text-center">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="?page=1{{ filter_params }}">first</a>
+                <a href="?page={{ page_obj.previous_page_number }}{{ filter_params }}"><<<</a>
             {% endif %}
-        {% endfor %}
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}{{ filter_params }}">>>></a>
-            <a href="?page={{ page_obj.paginator.num_pages }}{{ filter_params }}">last</a>
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    {{ num }}
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?page={{ num }}{{ filter_params }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{{ filter_params }}">>>></a>
+                <a href="?page={{ page_obj.paginator.num_pages }}{{ filter_params }}">last</a>
+            {% endif %}
         {% endif %}
-    {% endif %}
-
+    </div>
 {% endblock content %}
