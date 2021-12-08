@@ -1,0 +1,19 @@
+{% extends 'news/default.html' %}
+
+{% block title %}
+    Update profile
+{% endblock title %}
+
+{% block content %}
+    <button><a href="/accounts/logout/">Выйти</a></button>
+    {% if not is_author %}
+        <button><a href="{% url 'to_authors' %}">Хочу стать автором</a></button>
+    {% endif %}
+
+    <h2>Обновите свой профиль!</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Сохранить">
+    </form>
+{% endblock content %}

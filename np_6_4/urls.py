@@ -19,7 +19,12 @@ from django.urls import (
     include,
 )
 
+from news.views import NewsList
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('news/', include('news.urls'))
+    path('news/', include('news.urls')),
+    path('', NewsList.as_view(), name='home'),
+    path('accounts/', include('allauth.urls')),
+    path('sign/', include('sign.urls')),
 ]
