@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+import django.core.management.commands.runserver as runserver
 
 from news.dicts import POST_TYPES
 
@@ -10,9 +11,16 @@ POST_PREVIEW_LEN = 124
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    subscribers = models.ManyToManyField(User, through="UserCategory")
 
     def __str__(self):
         return self.name
+
+
+class UserCategory(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255, verbose_name='Заголовок')
@@ -42,6 +50,10 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('news_detail', kwargs={'pk': self.pk})
+
+    def get_full_absolute_url(self):
+        cmd = runserver.Command()
+        return 'http://' + cmd.default_addr + ':' + cmd.default_port + self.get_absolute_url()
 
 
 class PostCategory(models.Model):

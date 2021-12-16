@@ -6,6 +6,7 @@ from news.views import (
     NewsPostDelete,
     NewsPostCreate,
     NewsPostUpdate,
+    cat_subscribe,
 )
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
     path('create/', NewsPostCreate.as_view(), name='news_create'),
     path('<int:pk>/update/', NewsPostUpdate.as_view(), name='news_update'),
     path('<int:pk>/delete/', NewsPostDelete.as_view(), name='news_delete'),
+    path('catsubscribe/', cat_subscribe, name='cat_subscribe'),
 ]

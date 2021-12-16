@@ -1,6 +1,10 @@
+from django import forms
 import django_filters
 from django_filters import FilterSet
-from .models import Post
+from .models import (
+    Post,
+    Category,
+)
 
 
 class NewsFilter(FilterSet):
@@ -20,6 +24,12 @@ class NewsFilter(FilterSet):
         lookup_expr='gte',
         label='Не ранее',
         input_formats=['%d.%m.%Y']
+    )
+    categories = django_filters.ModelMultipleChoiceFilter(
+        field_name='categories',
+        queryset=Category.objects.all(),
+        label='Категория:',
+        widget=forms.CheckboxSelectMultiple
     )
 
     class Meta:

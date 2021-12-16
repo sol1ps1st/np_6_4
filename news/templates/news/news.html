@@ -6,12 +6,12 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="text-center">
+{#    <div class="text-center">#}
         <form method="GET">
-            {{ filter.form }}
+            {{ filter.form.as_p }}
             <input type="submit" value="Найти">
         </form>
-    </div>
+{#    </div>#}
     <p>
         {% if news %}
             <table>
@@ -24,9 +24,9 @@
                 </tr>
                 {% for n in news %}
                     <tr>
-                        <td><a class="nav-link" href={{ n.get_absolute_url }}>{{ n.title|censor }}</a></td>
+                        <td><a class="nav-link" href={{ n.get_absolute_url }}>{{ n.title }}</a></td>
                         <td>{{ n.created|date:'d.m.Y' }}</td>
-                        <td>{{ n.text|truncatechars:50|censor }}</td>
+                        <td>{{ n.text|truncatechars:50 }}</td>
                         <td><a class="nav-link" href={% url 'news_update' n.pk %}>Редактировать</a></td>
                         <td><a class="nav-link" href={% url 'news_delete' n.pk %}>Удалить</a></td>
                     </tr>
@@ -39,6 +39,12 @@
     <a class="nav-link" href={% url 'news_create' %}>
         <button type="button">Добавить новость</button>
     </a>
+
+    {% if filter_by_categories %}
+        <a class="nav-link" href={% url 'cat_subscribe' %}>
+            <button type="button">Подписаться на выбранные категории</button>
+        </a>
+    {% endif %}
 
     <div class="text-center">
         {% if is_paginated %}
