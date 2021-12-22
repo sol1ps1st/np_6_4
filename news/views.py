@@ -22,6 +22,7 @@ from news.models import Post, Category
 from news.filters import NewsFilter
 from .forms import PostForm
 from np_6_4.settings import DEFAULT_FROM_EMAIL
+from news.tasks import news_mail
 
 
 @receiver(m2m_changed, sender=Post.categories.through)
@@ -32,26 +33,7 @@ def notify_users_new_post(sender, instance, action, pk_set, **kwargs):
             for u in c.subscribers.all():
                 if u.email:
                     users_mails.add(u.email)
-        html_content = render_to_string(
-            'news/email_posts.html',
-            {
-                'posts': [instance],
-            }
-        )
-        msg = EmailMultiAlternatives(
-            subject='Добавлена новость',
-            body='',
-            from_email=DEFAULT_FROM_EMAIL,
-            to=list(users_mails)
-        )
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-        # send_mail(
-        #     subject='Добавлена новость',
-        #     message=f'Краткое содержание: {instance.text[:50]}',
-        #     from_email='alaltest5@yandex.ru',
-        #     recipient_list=list(users_mails)
-        # )
+        news_mail.apply_async([instance.pk, list(users_mails)], countdown=5)
 
 
 class NewsList(ListView):

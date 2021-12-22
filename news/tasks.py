@@ -11,8 +11,29 @@ from news.models import (
 from np_6_4.settings import DEFAULT_FROM_EMAIL
 
 
+from celery import shared_task
+
+
+@shared_task
+def news_mail(post_pk, users_mails):
+    post = Post.objects.get(pk=post_pk)
+    html_content = render_to_string(
+        'news/email_posts.html',
+        {
+            'posts': [post],
+        }
+    )
+    msg = EmailMultiAlternatives(
+        subject='Добавлена новость',
+        body='',
+        from_email=DEFAULT_FROM_EMAIL,
+        to=users_mails
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
+@shared_task
 def mail_week_posts():
-    # week_ago = datetime.datetime.now() - datetime.timedelta(days=7)
     week_ago = timezone.now() - datetime.timedelta(days=7)
     users = list(set([uc.user for uc in UserCategory.objects.all()]))
     for u in users:
