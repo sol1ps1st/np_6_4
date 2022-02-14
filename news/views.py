@@ -33,7 +33,7 @@ def notify_users_new_post(sender, instance, action, pk_set, **kwargs):
             for u in c.subscribers.all():
                 if u.email:
                     users_mails.add(u.email)
-        news_mail.apply_async([instance.pk, list(users_mails)], countdown=5)
+        # news_mail.apply_async([instance.pk, list(users_mails)], countdown=5)
 
 
 class NewsList(ListView):

@@ -24,9 +24,9 @@
                 </tr>
                 {% for n in news %}
                     <tr>
-                        <td><a class="nav-link" href={{ n.get_absolute_url }}>{{ n.title }}</a></td>
+                        <td><a class="nav-link" href={{ n.get_absolute_url }}>{{ n.title|censor }}</a></td>
                         <td>{{ n.created|date:'d.m.Y' }}</td>
-                        <td>{{ n.text|truncatechars:50 }}</td>
+                        <td>{{ n.text|truncatechars:50|censor }}</td>
                         <td><a class="nav-link" href={% url 'news_update' n.pk %}>Редактировать</a></td>
                         <td><a class="nav-link" href={% url 'news_delete' n.pk %}>Удалить</a></td>
                     </tr>

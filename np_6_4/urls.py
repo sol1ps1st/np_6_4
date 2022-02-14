@@ -18,13 +18,14 @@ from django.urls import (
     path,
     include,
 )
+from django.views.decorators.cache import cache_page
 
 from news.views import NewsList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('news/', include('news.urls')),
-    path('', NewsList.as_view(), name='home'),
+    path('', cache_page(60 * 3)(NewsList.as_view()), name='home'),
     path('accounts/', include('allauth.urls')),
     path('sign/', include('sign.urls')),
 ]
