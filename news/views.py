@@ -1,8 +1,11 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import (
     PermissionRequiredMixin,
 )
 from django.template.loader import render_to_string
+
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 from django.core.mail import EmailMultiAlternatives
@@ -65,6 +68,9 @@ class NewsList(ListView):
         if 'categories' in fdata:
             self.request.session['categories'] = fdata['categories']
             context['filter_by_categories'] = True
+        # Тест логгеров
+        # logger = logging.getLogger("django.server")
+        # logger.error("yaaaa email")
         return context
 
 
