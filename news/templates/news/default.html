@@ -12,6 +12,14 @@
     <meta name="author" content=""/>
     <title>{% block title %} {% endblock title %}</title>
     <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+    <style>
+        body {
+            background-color:
+            {% if current_time.hour >= 19 or current_time.hour <= 7 %}
+                gainsboro
+            {% endif %};
+        }
+    </style>
 </head>
 <body>
 {#{% cache 30 header %}#}
