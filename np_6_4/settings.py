@@ -262,6 +262,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'core.middlewares.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = 'np_6_4.urls'
@@ -278,6 +280,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
+
+                'core.context_processors.tz',
+                'django.template.context_processors.tz',
             ],
         },
     },

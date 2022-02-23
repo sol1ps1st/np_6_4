@@ -20,7 +20,10 @@ from django.urls import (
 )
 from django.views.decorators.cache import cache_page
 
-from news.views import NewsList
+from news.views import (
+    NewsList,
+    set_timezone,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +32,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('sign/', include('sign.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('set_timezone/', set_timezone, name='set_timezone'),
 ]

@@ -1,16 +1,13 @@
-import logging
-
-from django.utils.translation import gettext as _
+# import logging
+# from django.utils.translation import gettext as _
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import (
     PermissionRequiredMixin,
 )
-from django.http import HttpResponse
-from django.template.loader import render_to_string
-
+from django.template import RequestContext
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
-from django.core.mail import EmailMultiAlternatives
+# from django.core.mail import EmailMultiAlternatives
 # from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -22,11 +19,11 @@ from django.views.generic import (
     CreateView,
 )
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from news.models import Post, Category
 from news.filters import NewsFilter
 from .forms import PostForm
-from np_6_4.settings import DEFAULT_FROM_EMAIL
+# from np_6_4.settings import DEFAULT_FROM_EMAIL
 from news.tasks import news_mail
 
 
@@ -117,4 +114,9 @@ def cat_subscribe(request):
             for c_id in categories:
                 c = Category.objects.get(id=c_id)
                 c.subscribers.add(user)
+    return redirect('home')
+
+
+def set_timezone(request):
+    request.session['django_timezone'] = request.POST['timezone']
     return redirect('home')
