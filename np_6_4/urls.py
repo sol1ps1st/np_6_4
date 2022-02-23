@@ -28,4 +28,5 @@ urlpatterns = [
     path('', cache_page(60 * 3)(NewsList.as_view()), name='home'),
     path('accounts/', include('allauth.urls')),
     path('sign/', include('sign.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]

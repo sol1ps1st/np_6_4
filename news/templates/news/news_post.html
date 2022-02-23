@@ -1,5 +1,6 @@
 {% extends 'news/default.html' %}
 {% load custom_filters %}
+{% load i18n %}
 
 {% block title %}
     News post
@@ -18,7 +19,7 @@
     </br>
     {{ news_post.text|censor }}
     </br>
-    <a href={% url 'news_update' news_post.pk %}>Редактировать</a>
-    <a href={% url 'news_delete' news_post.pk %}>Удалить</a>
+    <a href={% url 'news_update' news_post.pk %}>{% translate 'Edit' %}</a>
+    <a href={% url 'news_delete' news_post.pk %}>{% translate 'Delete' %}</a>
 
 {% endblock content %}

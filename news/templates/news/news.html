@@ -1,5 +1,6 @@
 {% extends 'news/default.html' %}
 {% load custom_filters %}
+{% load i18n %}
 
 {% block title %}
     News
@@ -9,16 +10,16 @@
 {#    <div class="text-center">#}
         <form method="GET">
             {{ filter.form.as_p }}
-            <input type="submit" value="Найти">
+            <input type="submit" value={% translate 'Search' %}>
         </form>
 {#    </div>#}
     <p>
         {% if news %}
             <table>
                 <tr>
-                    <td>Заголовок</td>
-                    <td>Дата публикации</td>
-                    <td>Описание</td>
+                    <td>{% translate 'Title' %}</td>
+                    <td>{% translate 'Publication date' %}</td>
+                    <td>{% translate 'Description' %}</td>
                     <td></td> <!--Редактировать-->
                     <td></td> <!--Удалить-->
                 </tr>
@@ -27,22 +28,22 @@
                         <td><a class="nav-link" href={{ n.get_absolute_url }}>{{ n.title|censor }}</a></td>
                         <td>{{ n.created|date:'d.m.Y' }}</td>
                         <td>{{ n.text|truncatechars:50|censor }}</td>
-                        <td><a class="nav-link" href={% url 'news_update' n.pk %}>Редактировать</a></td>
-                        <td><a class="nav-link" href={% url 'news_delete' n.pk %}>Удалить</a></td>
+                        <td><a class="nav-link" href={% url 'news_update' n.pk %}> {% translate 'Edit' %} </a></td>
+                        <td><a class="nav-link" href={% url 'news_delete' n.pk %}> {% translate 'Delete' %} </a></td>
                     </tr>
                 {% endfor %}
             </table>
         {% else %}
-            <h2>Нет новостей(</h2>
+            <h2>{% translate 'No news' %}(</h2>
         {% endif %}
 
     <a class="nav-link" href={% url 'news_create' %}>
-        <button type="button">Добавить новость</button>
+        <button type="button">{% translate 'Add news' %}</button>
     </a>
 
     {% if filter_by_categories %}
         <a class="nav-link" href={% url 'cat_subscribe' %}>
-            <button type="button">Подписаться на выбранные категории</button>
+            <button type="button">{% translate 'Subscribe categories' %}</button>
         </a>
     {% endif %}
 

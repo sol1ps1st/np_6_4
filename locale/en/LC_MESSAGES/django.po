@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-22 18:36+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\news\filters.py:15 .\news\templates\news\news.html:20
+msgid "Title"
+msgstr "Title"
+
+#: .\news\filters.py:20
+msgid "Author"
+msgstr "Author"
+
+#: .\news\filters.py:21
+msgid "Not selected"
+msgstr "Not selected"
+
+#: .\news\filters.py:26
+msgid "Not earlier"
+msgstr "Not earlier"
+
+#: .\news\filters.py:32
+msgid "Category:"
+msgstr "Category:"
+
+#: .\news\templates\news\default.html:20
+msgid "News portal"
+msgstr "News portal"
+
+#: .\news\templates\news\default.html:28
+msgid "Admin"
+msgstr "Admin"
+
+#: .\news\templates\news\default.html:29
+msgid "News"
+msgstr "News"
+
+#: .\news\templates\news\default.html:30
+msgid "Your profile"
+msgstr "Your profile"
+
+#: .\news\templates\news\default.html:59
+msgid "Switch"
+msgstr "Switch"
+
+#: .\news\templates\news\news.html:13
+msgid "Search"
+msgstr "Search"
+
+#: .\news\templates\news\news.html:21
+msgid "Publication date"
+msgstr "Publication date"
+
+#: .\news\templates\news\news.html:22
+msgid "Description"
+msgstr "Description"
+
+#: .\news\templates\news\news.html:31 .\news\templates\news\news_post.html:22
+msgid "Edit"
+msgstr "Edit"
+
+#: .\news\templates\news\news.html:32 .\news\templates\news\news_post.html:23
+msgid "Delete"
+msgstr "Delete"
+
+#: .\news\templates\news\news.html:37
+msgid "No news"
+msgstr "No news"
+
+#: .\news\templates\news\news.html:41
+msgid "Add news"
+msgstr "Add news"
+
+#: .\news\templates\news\news.html:46
+msgid "Subscribe categories"
+msgstr "Subscribe to selected categories"
+
+#: .\news\views.py:124
+msgid "Hello world"
+msgstr "Hello world"
+
+#: .\np_6_4\settings.py:36
+msgid "English"
+msgstr "English"
+
+#: .\np_6_4\settings.py:37
+msgid "Russian"
+msgstr "Russian"

@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 import django_filters
 from django_filters import FilterSet
 from .models import (
@@ -11,24 +12,24 @@ class NewsFilter(FilterSet):
     title = django_filters.CharFilter(
         field_name='title',
         lookup_expr='icontains',
-        label='Заголовок'
+        label=_('Title')
     )
     author = django_filters.AllValuesFilter(
         field_name='author__user__username',
         lookup_expr='exact',
-        label='Автор',
-        empty_label='Не выбран'
+        label=_('Author'),
+        empty_label=_('Not selected')
     )
     created = django_filters.DateFilter(
         field_name='created',
         lookup_expr='gte',
-        label='Не ранее',
+        label=_('Not earlier'),
         input_formats=['%d.%m.%Y']
     )
     categories = django_filters.ModelMultipleChoiceFilter(
         field_name='categories',
         queryset=Category.objects.all(),
-        label='Категория:',
+        label=_('Category:'),
         widget=forms.CheckboxSelectMultiple
     )
 

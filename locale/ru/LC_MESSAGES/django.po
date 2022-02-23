@@ -1,0 +1,104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-22 18:36+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\news\filters.py:15 .\news\templates\news\news.html:20
+msgid "Title"
+msgstr "Заголовок"
+
+#: .\news\filters.py:20
+msgid "Author"
+msgstr "Автор"
+
+#: .\news\filters.py:21
+msgid "Not selected"
+msgstr "Не выбран"
+
+#: .\news\filters.py:26
+msgid "Not earlier"
+msgstr "Не ранее"
+
+#: .\news\filters.py:32
+msgid "Category:"
+msgstr "Категория:"
+
+#: .\news\templates\news\default.html:20
+msgid "News portal"
+msgstr "Новостной портал"
+
+#: .\news\templates\news\default.html:28
+msgid "Admin"
+msgstr "Админка"
+
+#: .\news\templates\news\default.html:29
+msgid "News"
+msgstr "Новости"
+
+#: .\news\templates\news\default.html:30
+msgid "Your profile"
+msgstr "Ваш профиль"
+
+#: .\news\templates\news\default.html:59
+msgid "Switch"
+msgstr "Переключить"
+
+#: .\news\templates\news\news.html:13
+msgid "Search"
+msgstr "Найти"
+
+#: .\news\templates\news\news.html:21
+msgid "Publication date"
+msgstr "Дата публикации"
+
+#: .\news\templates\news\news.html:22
+msgid "Description"
+msgstr "Описание"
+
+#: .\news\templates\news\news.html:31 .\news\templates\news\news_post.html:22
+msgid "Edit"
+msgstr "Редактировать"
+
+#: .\news\templates\news\news.html:32 .\news\templates\news\news_post.html:23
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\news\templates\news\news.html:37
+msgid "No news"
+msgstr "Нет новостей"
+
+#: .\news\templates\news\news.html:41
+msgid "Add news"
+msgstr "Добавить новость"
+
+#: .\news\templates\news\news.html:46
+msgid "Subscribe categories"
+msgstr "Подписаться на выбранные категории"
+
+#: .\news\views.py:124
+msgid "Hello world"
+msgstr "Привет мир"
+
+#: .\np_6_4\settings.py:36
+msgid "English"
+msgstr "Английский"
+
+#: .\np_6_4\settings.py:37
+msgid "Russian"
+msgstr "Русский"
